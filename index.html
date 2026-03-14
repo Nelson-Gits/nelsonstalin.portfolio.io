@@ -293,6 +293,28 @@ img{display:block;max-width:100%}a{color:inherit;text-decoration:none}
 .cs-impact-l{font-family:var(--body);font-size:13px;color:#888;font-weight:400}
 .cs-bottom-cta{text-align:center;margin-top:40px}
 
+/* Next project navigation */
+.cs-next-wrap{margin-top:60px;padding-top:40px;border-top:1px solid rgba(255,255,255,.06)}
+.cs-next-label{font-family:var(--body);font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.25em;text-transform:uppercase;font-weight:600;margin-bottom:20px}
+.cs-next-card{display:grid;grid-template-columns:1fr 1fr;gap:0;background:rgba(255,255,255,.03);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.07);border-radius:18px;overflow:hidden;cursor:pointer;transition:all .5s cubic-bezier(.16,1,.3,1);position:relative}
+.cs-next-card::before{content:'';position:absolute;inset:0;border-radius:18px;background:linear-gradient(135deg,rgba(255,255,255,.03) 0%,transparent 50%);pointer-events:none}
+.cs-next-card:hover{border-color:rgba(255,255,255,.15);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.4),0 0 40px var(--next-glow,rgba(245,166,35,.06))}
+@media(max-width:600px){.cs-next-card{grid-template-columns:1fr}}
+.cs-next-left{padding:clamp(24px,3vw,36px);display:flex;flex-direction:column;justify-content:center}
+.cs-next-counter{font-family:var(--head);font-size:11px;font-weight:700;color:rgba(255,255,255,.2);letter-spacing:.06em;margin-bottom:12px}
+.cs-next-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px}
+.cs-next-tag{font-family:var(--body);font-size:8px;padding:3px 10px;border-radius:16px;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.cs-next-title{font-family:var(--head);font-size:clamp(1.2rem,2.2vw,1.7rem);font-weight:700;color:var(--txt);line-height:1.25;margin-bottom:10px}
+.cs-next-desc{font-family:var(--body);font-size:clamp(.78rem,.95vw,.88rem);color:#888;line-height:1.65;font-weight:400;margin-bottom:18px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cs-next-btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--body);font-size:11px;font-weight:600;color:var(--txt2);letter-spacing:.08em;text-transform:uppercase;transition:color .3s}
+.cs-next-card:hover .cs-next-btn{color:var(--gold)}
+.cs-next-btn .next-arr{display:inline-block;transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.cs-next-card:hover .next-arr{transform:translateX(6px)}
+.cs-next-right{display:flex;align-items:center;justify-content:center;padding:clamp(16px,2vw,28px);position:relative;overflow:hidden}
+.cs-next-preview{width:100%;max-width:320px;border-radius:12px;overflow:hidden;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);box-shadow:0 10px 30px rgba(0,0,0,.3);transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.cs-next-card:hover .cs-next-preview{transform:scale(1.03) translateY(-4px)}
+.cs-next-preview img{width:100%;height:auto;display:block}
+
 /* CS new elements */
 .cs-meta{display:flex;gap:24px;margin-bottom:28px;flex-wrap:wrap}
 .cs-meta-item{display:flex;flex-direction:column;gap:2px}
@@ -329,9 +351,81 @@ img{display:block;max-width:100%}a{color:inherit;text-decoration:none}
 
 }
 @media(max-width:480px){.proc-grid{grid-template-columns:1fr}.cs-metrics{grid-template-columns:1fr}}
+/* ═══ CUSTOM CURSOR + MASK ═══ */
+.cursor-dot{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9998;mix-blend-mode:difference;transition:transform .15s ease,opacity .3s;transform:translate(-50%,-50%)}
+.cursor-ring{position:fixed;width:40px;height:40px;border:1.5px solid rgba(245,166,35,.4);border-radius:50%;pointer-events:none;z-index:9997;transition:width .3s,height .3s,border-color .3s;transform:translate(-50%,-50%)}
+.cursor-mask{position:fixed;width:200px;height:200px;border-radius:50%;pointer-events:none;z-index:9996;background:radial-gradient(circle,rgba(245,166,35,.06) 0%,transparent 70%);transform:translate(-50%,-50%);transition:width .4s,height .4s}
+body:hover .cursor-dot{opacity:1}
+body .cursor-dot{opacity:0}
+a:hover~.cursor-ring,.btn:hover~.cursor-ring,.proj-card:hover~.cursor-ring{width:60px;height:60px;border-color:var(--gold)}
+
+/* ═══ SCROLL PROGRESS BAR ═══ */
+#scroll-progress{position:fixed;top:0;left:0;height:2px;background:var(--grad);z-index:10000;width:0;box-shadow:0 0 10px var(--gold);transition:none;transform-origin:left}
+
+/* ═══ KINETIC TYPOGRAPHY ═══ */
+.kinetic-word{display:inline-block;overflow:hidden}
+.kinetic-word span{display:inline-block;transform:translateY(110%);transition:transform .8s cubic-bezier(.16,1,.3,1)}
+.kinetic-word.revealed span{transform:translateY(0)}
+.kinetic-char{display:inline-block;opacity:0;transform:translateY(40px) rotateX(-20deg);transition:all .5s cubic-bezier(.16,1,.3,1)}
+.kinetic-char.revealed{opacity:1;transform:translateY(0) rotateX(0)}
+
+/* ═══ 3D WEBGL CONTAINER ═══ */
+#webgl-bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.6}
+#webgl-bg canvas{width:100%!important;height:100%!important}
+
+/* ═══ LOTTIE-STYLE SVG ANIMS ═══ */
+.lottie-check{width:60px;height:60px}
+.lottie-check .circle{stroke-dasharray:166;stroke-dashoffset:166;animation:lottieCircle .6s ease forwards}
+.lottie-check .check{stroke-dasharray:48;stroke-dashoffset:48;animation:lottieCheck .3s ease .5s forwards}
+@keyframes lottieCircle{to{stroke-dashoffset:0}}
+@keyframes lottieCheck{to{stroke-dashoffset:0}}
+.lottie-pulse{animation:lottiePulse 2s ease infinite}
+@keyframes lottiePulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.1);opacity:.7}}
+
+/* ═══ RIPPLE MICRO-INTERACTION ═══ */
+.ripple-wrap{position:relative;overflow:hidden}
+.ripple-effect{position:absolute;border-radius:50%;background:rgba(245,166,35,.15);transform:scale(0);animation:rippleAnim .6s ease-out forwards;pointer-events:none}
+@keyframes rippleAnim{to{transform:scale(4);opacity:0}}
+
+/* ═══ SCROLLYTELLING SECTIONS ═══ */
+.scrolly-section{position:relative;min-height:100vh}
+.scrolly-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.scrolly-progress{position:absolute;left:clamp(20px,3vw,50px);top:50%;transform:translateY(-50%);width:2px;height:200px;background:rgba(255,255,255,.06);border-radius:2px}
+.scrolly-progress-fill{width:100%;background:var(--grad);border-radius:2px;transition:height .1s;height:0}
+
+/* ═══ ENHANCED PARALLAX DEPTH ═══ */
+.plx-layer{will-change:transform;transition:transform .05s linear}
+.plx-fast{--plx-speed:0.08}
+.plx-med{--plx-speed:0.04}
+.plx-slow{--plx-speed:0.02}
+
+/* ═══ TEXT REVEAL MASK ═══ */
+.text-reveal{overflow:hidden;display:inline-block}
+.text-reveal-inner{display:inline-block;transform:translateY(100%);transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.text-reveal.revealed .text-reveal-inner{transform:translateY(0)}
+
+/* ═══ SECTION DIVIDER SVG ═══ */
+.section-divider{width:100%;height:60px;overflow:hidden;position:relative}
+.section-divider svg{position:absolute;bottom:0;width:100%}
+
+/* ═══ COUNTER SCROLL ANIMATION ═══ */
+.scroll-counter{font-family:var(--head);font-weight:700;font-variant-numeric:tabular-nums}
+
+/* Hide default cursor on desktop */
+@media(hover:hover){body{cursor:none}body *{cursor:none}}
+@media(hover:none){.cursor-dot,.cursor-ring,.cursor-mask{display:none}}
+
 </style>
 </head>
 <body>
+<!-- 3D WebGL Background -->
+<div id="webgl-bg"></div>
+<!-- Scroll Progress -->
+<div id="scroll-progress"></div>
+<!-- Custom Cursor -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor-mask" id="cursorMask"></div>
 
 <!-- LOADER -->
 <div id="loader">
@@ -400,8 +494,8 @@ img{display:block;max-width:100%}a{color:inherit;text-decoration:none}
 </div>
 </div>
 <div class="hero-right">
-<div class="hero-photo-wrap"><img class="hero-photo" id="heroImg" alt="Nelson S"></div>
-<div class="hero-dash"><div class="hero-dash-float"><div class="dash">
+<div class="hero-photo-wrap plx-layer plx-fast"><img class="hero-photo" id="heroImg" alt="Nelson S"></div>
+<div class="hero-dash plx-layer plx-med"><div class="hero-dash-float"><div class="dash">
 <div class="dash-hdr"><div class="dash-dot"></div><span class="dash-live">LIVE — AI Monitor</span></div>
 <div class="dash-metrics">
 <div class="dash-m"><div class="dash-mv cu" data-t="87" style="color:#EF4444">0</div><div class="dash-ml">Risk Score</div></div>
@@ -696,28 +790,100 @@ ctx.fillStyle='#10B981';ctx.beginPath();ctx.arc(28,352,3,0,Math.PI*2);ctx.fill()
 return c.toDataURL('image/png');
 }
 
-/* ══════ LOADER ══════ */
+/* ══════ LOADER (with integrated sound) ══════ */
 ;(function(){
 const ld=document.getElementById('loader');
 const bgNum=document.getElementById('loader-bg-num');
 const fillNum=document.getElementById('loader-fill-num');
 const barFill=document.getElementById('loader-bar-fill');
 let progress=0;
+let audioCtx=null;
+let loaderGain=null;
+
+// Create audio context for loader
+function initLoaderAudio(){
+try{
+audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+
+// Layer 1: Deep ambient drone — runs entire loader
+const drone=audioCtx.createOscillator();
+const droneGain=audioCtx.createGain();
+drone.type='sine';
+drone.frequency.setValueAtTime(80,audioCtx.currentTime);
+drone.frequency.linearRampToValueAtTime(140,audioCtx.currentTime+3);
+droneGain.gain.setValueAtTime(0,audioCtx.currentTime);
+droneGain.gain.linearRampToValueAtTime(0.035,audioCtx.currentTime+0.3);
+droneGain.gain.linearRampToValueAtTime(0.05,audioCtx.currentTime+2);
+droneGain.gain.linearRampToValueAtTime(0,audioCtx.currentTime+3.2);
+drone.connect(droneGain);droneGain.connect(audioCtx.destination);
+drone.start(audioCtx.currentTime);drone.stop(audioCtx.currentTime+3.2);
+
+// Layer 2: Rising digital shimmer — builds tension
+const shimmer=audioCtx.createOscillator();
+const shimGain=audioCtx.createGain();
+shimmer.type='triangle';
+shimmer.frequency.setValueAtTime(400,audioCtx.currentTime);
+shimmer.frequency.exponentialRampToValueAtTime(1400,audioCtx.currentTime+2.8);
+shimGain.gain.setValueAtTime(0,audioCtx.currentTime);
+shimGain.gain.linearRampToValueAtTime(0.006,audioCtx.currentTime+0.5);
+shimGain.gain.linearRampToValueAtTime(0.018,audioCtx.currentTime+2.4);
+shimGain.gain.linearRampToValueAtTime(0,audioCtx.currentTime+3);
+shimmer.connect(shimGain);shimGain.connect(audioCtx.destination);
+shimmer.start(audioCtx.currentTime);shimmer.stop(audioCtx.currentTime+3);
+
+// Layer 3: Subtle counting ticks (every ~15%)
+[0.4,0.8,1.2,1.6,2.0,2.3].forEach(t=>{
+const tick=audioCtx.createOscillator();
+const tg=audioCtx.createGain();
+tick.type='sine';
+tick.frequency.setValueAtTime(1800+Math.random()*400,audioCtx.currentTime+t);
+tg.gain.setValueAtTime(0.015,audioCtx.currentTime+t);
+tg.gain.exponentialRampToValueAtTime(0.001,audioCtx.currentTime+t+0.06);
+tick.connect(tg);tg.connect(audioCtx.destination);
+tick.start(audioCtx.currentTime+t);tick.stop(audioCtx.currentTime+t+0.06);
+});
+
+// Layer 4: Completion chime — plays at 100%
+setTimeout(()=>{
+if(!audioCtx)return;
+// Two-note ascending chime
+const c1=audioCtx.createOscillator();const cg1=audioCtx.createGain();
+c1.type='sine';c1.frequency.setValueAtTime(523,audioCtx.currentTime);
+cg1.gain.setValueAtTime(0.05,audioCtx.currentTime);
+cg1.gain.exponentialRampToValueAtTime(0.001,audioCtx.currentTime+0.6);
+c1.connect(cg1);cg1.connect(audioCtx.destination);
+c1.start();c1.stop(audioCtx.currentTime+0.6);
+
+const c2=audioCtx.createOscillator();const cg2=audioCtx.createGain();
+c2.type='sine';c2.frequency.setValueAtTime(784,audioCtx.currentTime+0.1);
+cg2.gain.setValueAtTime(0,audioCtx.currentTime);
+cg2.gain.linearRampToValueAtTime(0.06,audioCtx.currentTime+0.1);
+cg2.gain.exponentialRampToValueAtTime(0.001,audioCtx.currentTime+0.9);
+c2.connect(cg2);cg2.connect(audioCtx.destination);
+c2.start(audioCtx.currentTime+0.1);c2.stop(audioCtx.currentTime+0.9);
+},2700);
+
+}catch(e){/* Audio not supported */}
+}
+
 const startTime=performance.now();
 const totalDuration=2800;
+let soundStarted=false;
 
 function updateLoader(now){
 const elapsed=now-startTime;
 const rawP=Math.min(elapsed/totalDuration,1);
-// Eased progress — starts fast, slows at end
-const eased=rawP<0.8 ? rawP*1.2 : 0.96+(rawP-0.8)*0.2;
+const eased=rawP<0.8?rawP*1.2:0.96+(rawP-0.8)*0.2;
 progress=Math.min(Math.round(eased*100),100);
+
+// Start sound on first frame
+if(!soundStarted){soundStarted=true;initLoaderAudio();}
+
 const display=String(progress).padStart(2,' ');
 bgNum.textContent=display;
 bgNum.dataset.num=display;
 fillNum.textContent=display;
 barFill.style.width=progress+'%';
-// Subtle scale pulse on bg number
 const pulse=1+Math.sin(elapsed*0.003)*0.01;
 bgNum.style.transform=`scale(${pulse})`;
 if(progress<100){
@@ -729,7 +895,6 @@ setTimeout(()=>{ld.style.display='none';startHero()},700);
 },300);
 }
 }
-// Start after a brief delay
 setTimeout(()=>requestAnimationFrame(updateLoader),400);
 })();
 
@@ -830,6 +995,29 @@ const img=genProjImg(p.imgType,p.color);
 const flowImg=genFlowImg(p.uxFlows[0],p.color);
 const archImg=genArchImg(p.architecture,p.color);
 const c=p.color;
+
+// Build next project card
+const idx=PROJECTS.findIndex(function(x){return x.id===p.id});
+const nextIdx=(idx+1)%PROJECTS.length;
+const np=PROJECTS[nextIdx];
+const nc=np.color;
+const nImg=genProjImg(np.imgType,nc);
+const nextHtml='<div class="cs-next-wrap">'+
+'<div class="cs-next-label">Next Project</div>'+
+'<div class="cs-next-card" style="--next-glow:'+nc+'15" id="csNextCard" data-next-idx="'+nextIdx+'">'+
+'<div class="cs-next-left">'+
+'<div class="cs-next-counter">0'+(nextIdx+1)+' / 0'+PROJECTS.length+'</div>'+
+'<div class="cs-next-tags">'+np.tags.map(function(t){return '<span class="cs-next-tag" style="border:1px solid '+nc+'40;color:'+nc+'">'+t+'</span>'}).join('')+'</div>'+
+'<div class="cs-next-title">'+np.title+'</div>'+
+'<div class="cs-next-desc">'+np.desc+'</div>'+
+'<div class="cs-next-btn">View Case Study <span class="next-arr">\u2192</span></div>'+
+'</div>'+
+'<div class="cs-next-right">'+
+'<div class="cs-next-preview"><img src="'+nImg+'" alt="'+np.title+'"></div>'+
+'</div>'+
+'</div>'+
+'</div>';
+
 document.getElementById('csContent').innerHTML=`
 <img class="cs-hero-img" src="${img}" alt="${p.title}">
 <div class="cs-tags">${p.tags.map(t=>`<span class="cs-tag" style="border:1px solid ${c}40;color:${c}">${t}</span>`).join('')}</div>
@@ -874,7 +1062,13 @@ document.getElementById('csContent').innerHTML=`
 <div class="cs-num-badge" style="color:${c}">12</div>
 <div class="cs-section"><h3>Learnings & Reflection</h3><p>${p.learning}</p></div>
 
-<div class="cs-bottom-cta"><button class="btn btn-p" onclick="closeCS()">← Back to Portfolio</button></div>`;
+<div class="cs-bottom-cta"><button class="btn btn-s" onclick="closeCS()">\u2190 Back to All Projects</button></div>
+`+nextHtml;
+// Attach click handler for next project card
+setTimeout(function(){
+var nc=document.getElementById('csNextCard');
+if(nc){nc.addEventListener('click',function(){openCS(PROJECTS[parseInt(nc.dataset.nextIdx)])})}
+},50);
 cs.classList.add('active');cs.scrollTop=0;document.body.style.overflow='hidden';
 }
 
@@ -987,25 +1181,361 @@ document.querySelectorAll(sels).forEach(el=>obs.observe(el));
 setTimeout(()=>{document.querySelectorAll(sels).forEach(el=>obs.observe(el))},150);
 })();
 
-/* ══════ PARALLAX ══════ */
-;(function(){
-const g1=document.querySelector('.rg1'),g2=document.querySelector('.rg2');
-window.addEventListener('scroll',()=>{
-const st=window.scrollY;if(st<window.innerHeight*1.5){const r=st/window.innerHeight;
-if(g1)g1.style.transform=`translate(${r*-30}px,${r*20}px)`;if(g2)g2.style.transform=`translate(${r*20}px,${r*-15}px)`}
-},{passive:true});
-document.addEventListener('mousemove',e=>{
-const mx=(e.clientX/window.innerWidth-.5)*2,my=(e.clientY/window.innerHeight-.5)*2;
-if(g1)g1.style.transform+=` translate(${mx*12}px,${my*8}px)`;
-if(g2)g2.style.transform+=` translate(${mx*-8}px,${my*-6}px)`;});
-})();
-
 /* ══════ NAV SCROLL ══════ */
 ;(function(){const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>{nav.style.background=window.scrollY>100?'rgba(10,10,10,.7)':'rgba(10,10,10,.6)';nav.style.borderBottomColor=window.scrollY>100?'rgba(245,166,35,.08)':'rgba(255,255,255,.06)';},{passive:true})})();
 
 /* ══════ SMOOTH NAV ══════ */
 document.querySelectorAll('#nav a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
+/* ══════════════════════════════════════════════
+   ADVANCED ANIMATION SYSTEMS
+   ══════════════════════════════════════════════ */
+
+/* ═══ 1. IMAGE HOVER SOUND EFFECTS ═══ */
+;(function(){
+let hoverCtx=null;
+function getAudioCtx(){
+if(!hoverCtx){try{hoverCtx=new(window.AudioContext||window.webkitAudioContext)()}catch(e){return null}}
+if(hoverCtx.state==='suspended')hoverCtx.resume();
+return hoverCtx;
+}
+
+function playHoverIn(){
+const ctx=getAudioCtx();if(!ctx)return;
+// Soft warm "whoosh" in — rising frequency with subtle harmonics
+const osc=ctx.createOscillator();const gain=ctx.createGain();
+osc.type='sine';
+osc.frequency.setValueAtTime(300,ctx.currentTime);
+osc.frequency.exponentialRampToValueAtTime(600,ctx.currentTime+0.12);
+gain.gain.setValueAtTime(0,ctx.currentTime);
+gain.gain.linearRampToValueAtTime(0.04,ctx.currentTime+0.03);
+gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.2);
+osc.connect(gain);gain.connect(ctx.destination);
+osc.start();osc.stop(ctx.currentTime+0.2);
+// Harmonic shimmer
+const osc2=ctx.createOscillator();const g2=ctx.createGain();
+osc2.type='triangle';
+osc2.frequency.setValueAtTime(900,ctx.currentTime);
+osc2.frequency.exponentialRampToValueAtTime(1400,ctx.currentTime+0.15);
+g2.gain.setValueAtTime(0,ctx.currentTime);
+g2.gain.linearRampToValueAtTime(0.012,ctx.currentTime+0.04);
+g2.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.18);
+osc2.connect(g2);g2.connect(ctx.destination);
+osc2.start();osc2.stop(ctx.currentTime+0.18);
+}
+
+function playHoverOut(){
+const ctx=getAudioCtx();if(!ctx)return;
+// Soft descending tone
+const osc=ctx.createOscillator();const gain=ctx.createGain();
+osc.type='sine';
+osc.frequency.setValueAtTime(500,ctx.currentTime);
+osc.frequency.exponentialRampToValueAtTime(250,ctx.currentTime+0.12);
+gain.gain.setValueAtTime(0.025,ctx.currentTime);
+gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.15);
+osc.connect(gain);gain.connect(ctx.destination);
+osc.start();osc.stop(ctx.currentTime+0.15);
+}
+
+// Attach to all images and image containers
+const imageSelectors='.hero-photo,.about-photo,.proj-preview,.proj-card,.proj-img,.cs-hero-img,.cs-dash-img';
+// Wait for DOM to be ready + elements rendered
+function attachImageSounds(){
+document.querySelectorAll(imageSelectors).forEach(el=>{
+if(el.dataset.soundAttached)return;
+el.dataset.soundAttached='1';
+el.addEventListener('mouseenter',playHoverIn);
+el.addEventListener('mouseleave',playHoverOut);
+});
+}
+// Run now and re-attach after dynamic content renders
+attachImageSounds();
+setTimeout(attachImageSounds,4000);
+// Re-attach when case study opens (MutationObserver)
+const csEl=document.getElementById('csContent');
+if(csEl){
+const mo=new MutationObserver(()=>{setTimeout(attachImageSounds,100)});
+mo.observe(csEl,{childList:true,subtree:true});
+}
+
+// Also add subtle click sound to buttons
+function playClick(){
+const ctx=getAudioCtx();if(!ctx)return;
+const osc=ctx.createOscillator();const gain=ctx.createGain();
+osc.type='sine';
+osc.frequency.setValueAtTime(800,ctx.currentTime);
+osc.frequency.exponentialRampToValueAtTime(1200,ctx.currentTime+0.05);
+gain.gain.setValueAtTime(0.03,ctx.currentTime);
+gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.1);
+osc.connect(gain);gain.connect(ctx.destination);
+osc.start();osc.stop(ctx.currentTime+0.1);
+}
+document.querySelectorAll('.btn,.proj-cta,.cs-back').forEach(el=>{
+el.addEventListener('click',playClick);
+});
+})();
+
+/* ═══ 2. INTERACTIVE 3D WebGL (Three.js-like via Canvas) ═══ */
+;(function(){
+const canvas=document.createElement('canvas');
+const container=document.getElementById('webgl-bg');
+container.appendChild(canvas);
+const gl=canvas.getContext('webgl')||canvas.getContext('experimental-webgl');
+if(!gl){return}
+
+function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;gl.viewport(0,0,canvas.width,canvas.height)}
+resize();window.addEventListener('resize',resize);
+
+// Shaders
+const vs=`attribute vec3 aPos;attribute float aSize;attribute vec3 aColor;uniform float uTime;uniform vec2 uMouse;uniform float uScroll;varying vec3 vColor;varying float vAlpha;
+void main(){vec3 p=aPos;p.y+=sin(uTime*0.5+p.x*2.0)*0.08;p.x+=cos(uTime*0.3+p.z*1.5)*0.06;p.y-=uScroll*0.3;
+float d=distance(p.xy,uMouse);vAlpha=smoothstep(0.6,0.0,d)*0.4+0.15;vColor=aColor;
+gl_Position=vec4(p,1.0);gl_PointSize=aSize*(1.0+sin(uTime+p.x*5.0)*0.3);}`;
+const fs=`precision mediump float;varying vec3 vColor;varying float vAlpha;
+void main(){float d=distance(gl_PointCoord,vec2(0.5));if(d>0.5)discard;float a=smoothstep(0.5,0.1,d)*vAlpha;gl_FragColor=vec4(vColor,a);}`;
+
+function createShader(type,src){const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);return s}
+const prog=gl.createProgram();
+gl.attachShader(prog,createShader(gl.VERTEX_SHADER,vs));
+gl.attachShader(prog,createShader(gl.FRAGMENT_SHADER,fs));
+gl.linkProgram(prog);gl.useProgram(prog);
+
+// Particles
+const N=200;const pos=new Float32Array(N*3);const sizes=new Float32Array(N);const colors=new Float32Array(N*3);
+const goldR=245/255,goldG=166/255,goldB=35/255,orR=255/255,orG=107/255,orB=53/255;
+for(let i=0;i<N;i++){
+pos[i*3]=(Math.random()-0.5)*2.5;pos[i*3+1]=(Math.random()-0.5)*2.5;pos[i*3+2]=(Math.random()-0.5)*1;
+sizes[i]=1.5+Math.random()*3;
+const t=Math.random();colors[i*3]=goldR*(1-t)+orR*t;colors[i*3+1]=goldG*(1-t)+orG*t;colors[i*3+2]=goldB*(1-t)+orB*t;
+}
+
+function makeBuf(data,attr,size){const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,data,gl.STATIC_DRAW);
+const loc=gl.getAttribLocation(prog,attr);gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,size,gl.FLOAT,false,0,0)}
+makeBuf(pos,'aPos',3);makeBuf(sizes,'aSize',1);makeBuf(colors,'aColor',3);
+
+const uTime=gl.getUniformLocation(prog,'uTime');
+const uMouse=gl.getUniformLocation(prog,'uMouse');
+const uScroll=gl.getUniformLocation(prog,'uScroll');
+
+let mx=0,my=0,scrollY=0;
+document.addEventListener('mousemove',e=>{mx=(e.clientX/window.innerWidth)*2-1;my=-(e.clientY/window.innerHeight)*2+1});
+window.addEventListener('scroll',()=>{scrollY=window.scrollY/document.body.scrollHeight},{passive:true});
+
+gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE);
+
+function render(t){
+t*=0.001;
+gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);
+gl.uniform1f(uTime,t);gl.uniform2f(uMouse,mx,my);gl.uniform1f(uScroll,scrollY);
+gl.drawArrays(gl.POINTS,0,N);
+requestAnimationFrame(render);
+}
+requestAnimationFrame(render);
+})();
+
+/* ═══ 3. CUSTOM CURSOR WITH MASKING ═══ */
+;(function(){
+const dot=document.getElementById('cursorDot');
+const ring=document.getElementById('cursorRing');
+const mask=document.getElementById('cursorMask');
+if(!dot)return;
+let cx=0,cy=0,rx=0,ry=0,mx=0,my=0;
+const lerp=(a,b,n)=>a+(b-a)*n;
+document.addEventListener('mousemove',e=>{cx=e.clientX;cy=e.clientY});
+function animCursor(){
+rx=lerp(rx,cx,0.15);ry=lerp(ry,cy,0.15);
+mx=lerp(mx,cx,0.08);my=lerp(my,cy,0.08);
+dot.style.left=cx+'px';dot.style.top=cy+'px';
+ring.style.left=rx+'px';ring.style.top=ry+'px';
+mask.style.left=mx+'px';mask.style.top=my+'px';
+requestAnimationFrame(animCursor);
+}
+animCursor();
+// Expand on interactive elements
+document.querySelectorAll('a,.btn,.proj-card,.tool-card,.proc-card,.test-card,.sys-chip,.vibe-card').forEach(el=>{
+el.addEventListener('mouseenter',()=>{ring.style.width='60px';ring.style.height='60px';ring.style.borderColor='var(--gold)';dot.style.transform='translate(-50%,-50%) scale(1.5)';mask.style.width='300px';mask.style.height='300px'});
+el.addEventListener('mouseleave',()=>{ring.style.width='40px';ring.style.height='40px';ring.style.borderColor='rgba(245,166,35,.4)';dot.style.transform='translate(-50%,-50%) scale(1)';mask.style.width='200px';mask.style.height='200px'});
+});
+})();
+
+/* ═══ 4. SCROLL PROGRESS BAR ═══ */
+;(function(){
+const bar=document.getElementById('scroll-progress');
+window.addEventListener('scroll',()=>{
+const h=document.body.scrollHeight-window.innerHeight;
+const p=h>0?(window.scrollY/h)*100:0;
+bar.style.width=p+'%';
+},{passive:true});
+})();
+
+/* ═══ 5. SILKY SMOOTH SCROLL (Custom Lenis-like) ═══ */
+;(function(){
+if('ontouchstart' in window)return; // Skip on mobile
+let current=0,target=0,ease=0.08;
+function smoothScroll(){
+target=window.scrollY;
+current=current+(target-current)*ease;
+// Apply to parallax layers
+document.querySelectorAll('.plx-layer').forEach(el=>{
+const speed=parseFloat(getComputedStyle(el).getPropertyValue('--plx-speed'))||0.03;
+const rect=el.getBoundingClientRect();
+const offset=(rect.top+rect.height/2-window.innerHeight/2)*speed;
+el.style.transform=`translateY(${-offset}px)`;
+});
+requestAnimationFrame(smoothScroll);
+}
+smoothScroll();
+})();
+
+/* ═══ 6. KINETIC TYPOGRAPHY (Hero) ═══ */
+;(function(){
+// Convert hero headline words into kinetic chars
+function kinetic(selector){
+document.querySelectorAll(selector).forEach(el=>{
+if(el.dataset.kinetic)return;
+el.dataset.kinetic='1';
+const text=el.textContent;
+el.innerHTML='';
+text.split('').forEach((ch,i)=>{
+const span=document.createElement('span');
+span.className='kinetic-char';
+span.textContent=ch===' '?'\u00A0':ch;
+span.style.transitionDelay=(i*0.03)+'s';
+el.appendChild(span);
+});
+// Observe
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{
+if(e.isIntersecting){el.querySelectorAll('.kinetic-char').forEach(c=>c.classList.add('revealed'));obs.disconnect()}
+})},{threshold:0.3});
+obs.observe(el);
+});
+}
+// Apply after loader finishes
+setTimeout(()=>{
+kinetic('.proj-title');
+kinetic('.proc-name');
+},3500);
+})();
+
+/* ═══ 7. MICRO-INTERACTIONS (Ripple on buttons) ═══ */
+;(function(){
+document.querySelectorAll('.btn,.proj-cta').forEach(el=>{
+el.classList.add('ripple-wrap');
+el.addEventListener('click',function(e){
+const rect=this.getBoundingClientRect();
+const ripple=document.createElement('span');
+ripple.className='ripple-effect';
+ripple.style.left=(e.clientX-rect.left)+'px';
+ripple.style.top=(e.clientY-rect.top)+'px';
+ripple.style.width=ripple.style.height=Math.max(rect.width,rect.height)+'px';
+this.appendChild(ripple);
+setTimeout(()=>ripple.remove(),600);
+});
+});
+})();
+
+/* ═══ 8. ENHANCED PARALLAX (Multi-layer) ═══ */
+;(function(){
+const hero=document.getElementById('hero');
+const g1=hero.querySelector('.rg1');
+const g2=hero.querySelector('.rg2');
+const grid=hero.querySelector('.grid-ov');
+let lastMx=0,lastMy=0;
+
+document.addEventListener('mousemove',e=>{
+lastMx=(e.clientX/window.innerWidth-0.5)*2;
+lastMy=(e.clientY/window.innerHeight-0.5)*2;
+});
+
+function parallaxFrame(){
+const st=window.scrollY;
+if(st<window.innerHeight*2){
+const r=st/window.innerHeight;
+if(g1)g1.style.transform=`translate(${r*-30+lastMx*15}px,${r*20+lastMy*10}px)`;
+if(g2)g2.style.transform=`translate(${r*20+lastMx*-10}px,${r*-15+lastMy*-8}px)`;
+if(grid)grid.style.opacity=Math.max(0.03-r*0.02,0);
+}
+requestAnimationFrame(parallaxFrame);
+}
+parallaxFrame();
+})();
+
+/* ═══ 9. SCROLL-TRIGGERED COUNTER ANIMATIONS ═══ */
+;(function(){
+const counters=document.querySelectorAll('.scroll-counter');
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{
+if(e.isIntersecting&&!e.target.dataset.counted){
+e.target.dataset.counted='1';
+const end=parseFloat(e.target.dataset.to);
+const suffix=e.target.dataset.suffix||'';
+const dur=1800;const st=performance.now();
+function step(now){const p=Math.min((now-st)/dur,1);const ease=1-Math.pow(1-p,3);
+e.target.textContent=(end%1!==0?(end*ease).toFixed(1):Math.round(end*ease))+suffix;
+if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step);
+}})},{threshold:0.3});
+counters.forEach(c=>obs.observe(c));
+})();
+
+/* ═══ 10. ENTRANCE REVEAL ANIMATIONS (Text masks) ═══ */
+;(function(){
+document.querySelectorAll('.text-reveal').forEach(el=>{
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{
+if(e.isIntersecting){e.target.classList.add('revealed');obs.disconnect()}
+})},{threshold:0.3});
+obs.observe(el);
+});
+})();
+
+/* ═══ 11. LOTTIE-STYLE SVG ANIMATED ICONS ═══ */
+function createLottieCheck(container,color){
+container.innerHTML=`<svg class="lottie-check" viewBox="0 0 52 52"><circle class="circle" cx="26" cy="26" r="24" fill="none" stroke="${color}" stroke-width="2"/><path class="check" d="M14 27l8 8 16-16" fill="none" stroke="${color}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+}
+
+/* ═══ 12. SECTION PROGRESS INDICATORS ═══ */
+;(function(){
+const sections=document.querySelectorAll('.sec');
+const dots=document.createElement('div');
+dots.style.cssText='position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:999;display:flex;flex-direction:column;gap:10px';
+sections.forEach((sec,i)=>{
+const dot=document.createElement('div');
+dot.style.cssText='width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.15);transition:all .3s;cursor:pointer';
+dot.addEventListener('click',()=>sec.scrollIntoView({behavior:'smooth'}));
+dot.dataset.idx=i;
+dots.appendChild(dot);
+});
+document.body.appendChild(dots);
+
+window.addEventListener('scroll',()=>{
+const vh=window.innerHeight;
+sections.forEach((sec,i)=>{
+const rect=sec.getBoundingClientRect();
+const dot=dots.children[i];
+if(rect.top<vh*0.5&&rect.bottom>vh*0.5){
+dot.style.background='var(--gold)';dot.style.width='8px';dot.style.height='8px';dot.style.boxShadow='0 0 8px rgba(245,166,35,.4)';
+}else{
+dot.style.background='rgba(255,255,255,.15)';dot.style.width='6px';dot.style.height='6px';dot.style.boxShadow='none';
+}
+});
+},{passive:true});
+})();
+
+/* ═══ 13. SCROLLYTELLING (Stats counter section) ═══ */
+;(function(){
+// Add floating stat badges that count on scroll
+const statSection=document.querySelector('#work');
+if(!statSection)return;
+const badge=document.createElement('div');
+badge.style.cssText='position:absolute;top:10px;right:20px;font-family:var(--head);font-size:11px;color:rgba(245,166,35,.3);font-weight:700;letter-spacing:.1em;z-index:5';
+badge.textContent='SCROLL TO EXPLORE';
+statSection.style.position='relative';
+statSection.appendChild(badge);
+window.addEventListener('scroll',()=>{
+const rect=statSection.getBoundingClientRect();
+const progress=Math.max(0,Math.min(1,1-rect.bottom/(rect.height+window.innerHeight)));
+badge.style.opacity=progress>0.1&&progress<0.9?1:0;
+},{passive:true});
+})();
+
 </script>
 </body>
 </html>
